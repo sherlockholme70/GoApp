@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('govnodeapi:server');
 var http = require('https');
+const express = require("express");
+const appExpress = express(); 
 
 /**
  * Get port from environment and store in Express.
@@ -19,16 +21,20 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+//var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+appExpress.listen(port,function(){
 console.log("server listen on port : ",port);
-server.on('error', onError);
-server.on('listening', onListening);
+});
+
+// server.listen(port);
+// console.log("server listen on port : ",port);
+// server.on('error', onError);
+// server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
